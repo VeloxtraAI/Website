@@ -37,7 +37,7 @@ const DemoForm: React.FC = () => {
             </div>
             <h2 className="text-4xl font-bold mb-6">Perfect!</h2>
             <p className="text-xl text-gray-300 leading-relaxed">
-              Keep your phone nearby. <span className="text-yellow-500 font-bold">Sofia will call you in the next 15 minutes</span> to demonstrate how she handles luxury car inquiries live.
+              Keep your phone nearby. <span className="text-yellow-500 font-bold">Alex will call you in the next 15 minutes</span> to demonstrate how he handles luxury car inquiries live.
             </p>
             <div className="mt-10 pt-10 border-t border-white/5">
               <p className="text-sm text-gray-500">
@@ -56,11 +56,11 @@ const DemoForm: React.FC = () => {
         <div className="flex flex-col lg:flex-row items-center gap-16">
           <div className="lg:w-1/2">
             <h2 className="text-4xl md:text-6xl font-bold mb-8">
-              Experience Sofia Live — <br />
+              Experience Alex Live — <br />
               <span className="gold-gradient italic">In 15 Minutes</span>
             </h2>
             <p className="text-xl text-gray-400 mb-10 leading-relaxed">
-              Enter your details below. Our AI agent, Sofia, will initiate a live demonstration call to your number within 15 minutes.
+              Enter your details below. Our AI agent, Alex, will initiate a live demonstration call to your number within 15 minutes.
             </p>
             
             <ul className="space-y-6">
@@ -190,7 +190,7 @@ const DemoForm: React.FC = () => {
                 </button>
                 
                 <p className="text-center text-xs text-gray-500">
-                  Sofia will call you shortly after submission.
+                  Alex will call you shortly after submission.
                 </p>
               </form>
             </div>
