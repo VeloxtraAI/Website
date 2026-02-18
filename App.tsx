@@ -52,7 +52,7 @@ const App: React.FC = () => {
           {/* Desktop Nav */}
           <div className="hidden md:flex items-center space-x-8 text-sm font-medium">
             <a href="#problem" className="text-gray-400 hover:text-white transition-colors">Challenges</a>
-            <a href="#solution" className="text-gray-400 hover:text-white transition-colors">Sofia AI</a>
+            <a href="#solution" className="text-gray-400 hover:text-white transition-colors">Alex AI</a>
             <a href="#how-it-works" className="text-gray-400 hover:text-white transition-colors">Process</a>
             <button 
               onClick={scrollToDemo}
@@ -75,7 +75,7 @@ const App: React.FC = () => {
         {mobileMenuOpen && (
           <div className="md:hidden absolute top-full left-0 w-full bg-[#05070a] border-b border-white/10 py-6 px-6 flex flex-col space-y-4 animate-in fade-in slide-in-from-top-4 duration-300">
             <a href="#problem" onClick={() => setMobileMenuOpen(false)} className="text-gray-400 hover:text-white">Challenges</a>
-            <a href="#solution" onClick={() => setMobileMenuOpen(false)} className="text-gray-400 hover:text-white">Sofia AI</a>
+            <a href="#solution" onClick={() => setMobileMenuOpen(false)} className="text-gray-400 hover:text-white">Alex AI</a>
             <a href="#how-it-works" onClick={() => setMobileMenuOpen(false)} className="text-gray-400 hover:text-white">Process</a>
             <button 
               onClick={scrollToDemo}
