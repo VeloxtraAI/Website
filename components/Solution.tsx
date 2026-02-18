@@ -7,12 +7,12 @@ const Solution: React.FC = () => {
     {
       icon: <ShieldCheck className="text-yellow-500" />,
       title: "24/7 Availability",
-      text: "Sofia never sleeps. She handles holiday inquiries, late-night browsing calls, and early morning follow-ups."
+      text: "Alex never sleeps. He handles holiday inquiries, late-night browsing calls, and early morning follow-ups."
     },
     {
       icon: <Zap className="text-yellow-500" />,
       title: "Instant Response",
-      text: "Zero hold times. Sofia answers on the first ring with the tone and sophistication your brand demands."
+      text: "Zero hold times. Alex answers on the first ring with the tone and sophistication your brand demands."
     },
     {
       icon: <Calendar className="text-yellow-500" />,
@@ -41,7 +41,7 @@ const Solution: React.FC = () => {
               <div className="absolute bottom-6 left-6 right-6 p-6 navy-card rounded-2xl border border-yellow-600/20">
                 <div className="flex items-center space-x-4 mb-3">
                   <div className="w-3 h-3 bg-green-500 rounded-full animate-pulse"></div>
-                  <span className="text-sm font-semibold tracking-widest text-gray-300">SOFIA AI: ACTIVE</span>
+                  <span className="text-sm font-semibold tracking-widest text-gray-300">ALEX AI: ACTIVE</span>
                 </div>
                 <p className="text-sm text-gray-400 italic">"Certainly, Mr. Sterling. I see the 2026 911 Turbo S is available for a viewing this Saturday at 11 AM. Shall I reserve that for you?"</p>
               </div>
@@ -50,11 +50,11 @@ const Solution: React.FC = () => {
 
           <div className="lg:w-1/2">
             <h2 className="text-4xl md:text-5xl font-bold mb-8">
-              Meet Sofia — <br />
+              Meet Alex — <br />
               <span className="gold-gradient">Your AI Receptionist</span>
             </h2>
             <p className="text-gray-400 mb-12 text-lg">
-              Sofia isn't just a chatbot on a phone line. She is a highly-trained, voice-optimized AI agent designed specifically for the nuance and luxury of high-end automotive sales.
+              Alex isn't just a chatbot on a phone line. He is a highly-trained, voice-optimized AI agent designed specifically for the nuance and luxury of high-end automotive sales.
             </p>
 
             <div className="grid sm:grid-cols-2 gap-8">
