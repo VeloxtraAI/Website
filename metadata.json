@@ -1,0 +1,8 @@
+
+{
+  "name": "Veloxtra - Voice AI for Luxury Automotive",
+  "description": "Premium landing page for Veloxtra, an AI automation agency specializing in Voice AI agents for high-end car dealerships.",
+  "requestFramePermissions": [
+    "camera"
+  ]
+}
