@@ -10,8 +10,8 @@ const HowItWorks: React.FC = () => {
     },
     {
       number: "02",
-      title: "Sofia Engages",
-      description: "Sofia answers instantly, qualifies their trade-in and budget, and books the appointment."
+      title: "Alex Engages",
+      description: "Alex answers instantly, qualifies their trade-in and budget, and books the appointment."
     },
     {
       number: "03",
