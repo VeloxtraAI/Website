@@ -15,16 +15,40 @@ const DemoForm: React.FC = () => {
     agreed: false
   });
 
-  const handleSubmit = async (e: React.FormEvent) => {
+ const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setLoading(true);
     
-    // Simulate API call/Webhook
-    await new Promise(resolve => setTimeout(resolve, 1500));
-    
-    console.log("Form Submitted:", formData);
-    setLoading(false);
-    setSubmitted(true);
+    try {
+      // Send data to n8n webhook
+      const response = await fetch('https://n8n.veloxtra-ai.com/webhook/veloxtra-demo', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          first_name: formData.firstName,
+          last_name: formData.lastName,
+          company_name: formData.companyName,
+          phone_number: formData.phone,
+          email: formData.email,
+          monthly_revenue: formData.revenue
+        })
+      });
+
+      if (response.ok) {
+        console.log("Form submitted successfully to n8n");
+        setSubmitted(true);
+      } else {
+        console.error("Failed to submit form");
+        alert("Something went wrong. Please try again.");
+      }
+    } catch (error) {
+      console.error('Error submitting form:', error);
+      alert("Could not connect to our system. Please try again.");
+    } finally {
+      setLoading(false);
+    }
   };
 
   if (submitted) {
