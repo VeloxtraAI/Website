@@ -35,7 +35,7 @@ const Hero: React.FC<HeroProps> = ({ onCtaClick }) => {
           </h1>
           
           <p className="text-xl text-gray-400 mb-10 leading-relaxed max-w-2xl">
-            AI Voice Agents that sound human, work 24/7, and seamlessly convert inbound calls into high-value showroom visits. Sofia handles the traffic; your team closes the sales.
+            AI Voice Agents that sound human, work 24/7, and seamlessly convert inbound calls into high-value showroom visits. Alex handles the traffic; your team closes the sales.
           </p>
           
           <div className="flex flex-col sm:flex-row items-start sm:items-center space-y-4 sm:space-y-0 sm:space-x-6">
@@ -43,7 +43,7 @@ const Hero: React.FC<HeroProps> = ({ onCtaClick }) => {
               onClick={onCtaClick}
               className="gold-button px-8 py-4 rounded-full text-black font-bold text-lg flex items-center group"
             >
-              See Sofia in Action
+              See Alex in Action
               <ArrowRight className="ml-2 group-hover:translate-x-1 transition-transform" size={20} />
             </button>
             <div className="flex items-center space-x-4">
