@@ -42,12 +42,12 @@ const DemoForm: React.FC = () => {
 
       console.log('Step 2: Initializing Retell Web Call...');
       
-      // 3. Initialize Retell Web Call
+      // 2. Initialize Retell Web Call
       const retellWeb = new RetellWebClient();
 
-      console.log('Step 4: Starting call with agent...');
+      console.log('Step 3: Starting call with agent...');
 
-      // 4. Start the web call with dynamic variables
+      // 3. Start the web call with dynamic variables
       await retellWeb.startCall({
         agentId: "agent_17ba52991931f41b6a99a1bf45",
         callId: null,
@@ -62,9 +62,9 @@ const DemoForm: React.FC = () => {
         }
       });
 
-      console.log('Step 5: Call started successfully!');
+      console.log('Step 4: Call started successfully!');
 
-      // 5. Show success message
+      // 4. Show success message
       setSubmitted(true);
 
     } catch (error) {
