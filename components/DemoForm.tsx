@@ -16,70 +16,57 @@ const DemoForm: React.FC = () => {
   });
 
   const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
-    setLoading(true);
+  e.preventDefault();
+  setLoading(true);
+  
+  try {
+    console.log('Step 1: Requesting web call from n8n...');
     
-    try {
-      console.log('Step 1: Submitting form data to n8n...');
-      
-      // 1. Send data to n8n for Google Sheets logging
-      const n8nResponse = await fetch('https://n8n.veloxtra-ai.com/webhook/veloxtra-demo', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          first_name: formData.firstName,
-          last_name: formData.lastName,
-          company_name: formData.companyName,
-          phone_number: formData.phone,
-          email: formData.email,
-          monthly_revenue: formData.revenue
-        })
-      });
+    // 1. Send data to n8n and GET the access token back
+    const response = await fetch('https://n8n.veloxtra-ai.com/webhook/veloxtra-demo', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        first_name: formData.firstName,
+        last_name: formData.lastName,
+        company_name: formData.companyName,
+        phone_number: formData.phone,
+        email: formData.email,
+        monthly_revenue: formData.revenue
+      })
+    });
 
-      console.log('n8n response:', n8nResponse.status);
+    const data = await response.json();
+    console.log('Received access token from n8n:', data);
 
-      console.log('Step 2: Initializing Retell Web Call...');
-      
-      // 2. Initialize Retell Web Call
-      const retellWeb = new RetellWebClient();
-
-      console.log('Step 3: Starting call with agent...');
-
-      // 3. Start the web call with dynamic variables
-      await retellWeb.startCall({
-        agentId: "agent_17ba52991931f41b6a99a1bf45",
-        callId: null,
-        sampleRate: 24000,
-        enableUpdate: true,
-        dynamicVariables: {
-          first_name: formData.firstName,
-          last_name: formData.lastName,
-          company_name: formData.companyName,
-          email: formData.email,
-          monthly_revenue: formData.revenue
-        }
-      });
-
-      console.log('Step 4: Call started successfully!');
-
-      // 4. Show success message
-      setSubmitted(true);
-
-    } catch (error) {
-      console.error('Error in handleSubmit:', error);
-      
-      // Show specific error message
-      if (error instanceof Error) {
-        alert(`Error: ${error.message}`);
-      } else {
-        alert("Could not start the demo call. Please check the console for details.");
-      }
-    } finally {
-      setLoading(false);
+    if (!data.access_token) {
+      throw new Error('No access token received from server');
     }
-  };
+
+    console.log('Step 2: Starting web call with access token...');
+    
+    // 2. Initialize Retell Web Call
+    const retellWeb = new RetellWebClient();
+
+    // 3. Start call with the access token
+    await retellWeb.startCall({
+      accessToken: data.access_token,
+      sampleRate: 24000,
+      enableUpdate: true
+    });
+
+    console.log('Step 3: Call started successfully!');
+    setSubmitted(true);
+
+  } catch (error) {
+    console.error('Error:', error);
+    alert(`Error: ${error instanceof Error ? error.message : 'Could not start call'}`);
+  } finally {
+    setLoading(false);
+  }
+};
 
   if (submitted) {
     return (
