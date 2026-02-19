@@ -54,7 +54,15 @@ const DemoForm: React.FC = () => {
     await retellWeb.startCall({
       accessToken: data.access_token,
       sampleRate: 24000,
-      enableUpdate: true
+      enableUpdate: true,
+      // Pass dynamic variables here
+      metadata: {
+        first_name: formData.firstName,
+        last_name: formData.lastName,
+        company_name: formData.companyName,
+        email: formData.email,
+        monthly_revenue: formData.revenue
+      }
     });
 
     console.log('Step 3: Call started successfully!');
