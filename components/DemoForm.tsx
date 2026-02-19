@@ -1,3 +1,8 @@
+declare global {
+  interface Window {
+    RetellWebClient: any;
+  }
+}
 
 import React, { useState } from 'react';
 import { Send, PhoneCall, CheckCircle2 } from 'lucide-react';
@@ -15,13 +20,13 @@ const DemoForm: React.FC = () => {
     agreed: false
   });
 
- const handleSubmit = async (e: React.FormEvent) => {
+const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setLoading(true);
     
     try {
-      // Send data to n8n webhook
-      const response = await fetch('https://n8n.veloxtra-ai.com/webhook/veloxtra-demo', {
+      // 1. Send data to n8n for Google Sheets logging
+      await fetch('https://n8n.veloxtra-ai.com/webhook/veloxtra-demo', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -36,17 +41,31 @@ const DemoForm: React.FC = () => {
         })
       });
 
-      if (response.ok) {
-        console.log("Form submitted successfully to n8n");
-        setSubmitted(true);
-      } else {
-        console.error("Failed to submit form");
-        alert("Something went wrong. Please try again.");
-      }
+      // 2. Initialize Retell Web Call
+      const retellWeb = new window.RetellWebClient();
+
+      // 3. Start the web call with dynamic variables
+      await retellWeb.startCall({
+        agentId: "agent_17ba52991931f41b6a99a1bf45",
+        callId: null,
+        sampleRate: 24000,
+        enableUpdate: true,
+        dynamicVariables: {
+          first_name: formData.firstName,
+          last_name: formData.lastName,
+          company_name: formData.companyName,
+          email: formData.email,
+          monthly_revenue: formData.revenue
+        }
+      });
+
+      // 4. Show success message
+      setSubmitted(true);
+      setLoading(false);
+
     } catch (error) {
-      console.error('Error submitting form:', error);
-      alert("Could not connect to our system. Please try again.");
-    } finally {
+      console.error('Error:', error);
+      alert("Could not start the demo call. Please try again.");
       setLoading(false);
     }
   };
@@ -61,7 +80,7 @@ const DemoForm: React.FC = () => {
             </div>
             <h2 className="text-4xl font-bold mb-6">Perfect!</h2>
             <p className="text-xl text-gray-300 leading-relaxed">
-              Keep your phone nearby. <span className="text-yellow-500 font-bold">Alex will call you in the next 15 minutes</span> to demonstrate how he handles luxury car inquiries live.
+              <span className="text-yellow-500 font-bold">Alex is now talking to you!</span> You should hear him through your browser. Experience how he handles luxury car inquiries live.
             </p>
             <div className="mt-10 pt-10 border-t border-white/5">
               <p className="text-sm text-gray-500">
