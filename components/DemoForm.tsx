@@ -1,10 +1,5 @@
-declare global {
-  interface Window {
-    RetellWebClient: any;
-  }
-}
-
 import React, { useState } from 'react';
+import { RetellWebClient } from 'retell-client-js-sdk';
 import { Send, PhoneCall, CheckCircle2 } from 'lucide-react';
 
 const DemoForm: React.FC = () => {
@@ -55,7 +50,7 @@ const DemoForm: React.FC = () => {
       console.log('Step 3: Initializing Retell Web Call...');
       
       // 3. Initialize Retell Web Call
-      const retellWeb = new window.RetellWebClient();
+      const retellWeb = new RetellWebClient();
 
       console.log('Step 4: Starting call with agent...');
 
