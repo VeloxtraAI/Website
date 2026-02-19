@@ -40,14 +40,7 @@ const DemoForm: React.FC = () => {
 
       console.log('n8n response:', n8nResponse.status);
 
-      // 2. Check if Retell SDK is loaded
-      console.log('Step 2: Checking if Retell SDK is loaded...');
-      if (typeof window.RetellWebClient === 'undefined') {
-        console.error('RetellWebClient is not defined!');
-        throw new Error('Retell SDK not loaded. Please refresh the page and try again.');
-      }
-
-      console.log('Step 3: Initializing Retell Web Call...');
+      console.log('Step 2: Initializing Retell Web Call...');
       
       // 3. Initialize Retell Web Call
       const retellWeb = new RetellWebClient();
