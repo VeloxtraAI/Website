@@ -20,13 +20,15 @@ const DemoForm: React.FC = () => {
     agreed: false
   });
 
-const handleSubmit = async (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setLoading(true);
     
     try {
+      console.log('Step 1: Submitting form data to n8n...');
+      
       // 1. Send data to n8n for Google Sheets logging
-      await fetch('https://n8n.veloxtra-ai.com/webhook/veloxtra-demo', {
+      const n8nResponse = await fetch('https://n8n.veloxtra-ai.com/webhook/veloxtra-demo', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
@@ -41,10 +43,23 @@ const handleSubmit = async (e: React.FormEvent) => {
         })
       });
 
-      // 2. Initialize Retell Web Call
+      console.log('n8n response:', n8nResponse.status);
+
+      // 2. Check if Retell SDK is loaded
+      console.log('Step 2: Checking if Retell SDK is loaded...');
+      if (typeof window.RetellWebClient === 'undefined') {
+        console.error('RetellWebClient is not defined!');
+        throw new Error('Retell SDK not loaded. Please refresh the page and try again.');
+      }
+
+      console.log('Step 3: Initializing Retell Web Call...');
+      
+      // 3. Initialize Retell Web Call
       const retellWeb = new window.RetellWebClient();
 
-      // 3. Start the web call with dynamic variables
+      console.log('Step 4: Starting call with agent...');
+
+      // 4. Start the web call with dynamic variables
       await retellWeb.startCall({
         agentId: "agent_17ba52991931f41b6a99a1bf45",
         callId: null,
@@ -59,13 +74,21 @@ const handleSubmit = async (e: React.FormEvent) => {
         }
       });
 
-      // 4. Show success message
+      console.log('Step 5: Call started successfully!');
+
+      // 5. Show success message
       setSubmitted(true);
-      setLoading(false);
 
     } catch (error) {
-      console.error('Error:', error);
-      alert("Could not start the demo call. Please try again.");
+      console.error('Error in handleSubmit:', error);
+      
+      // Show specific error message
+      if (error instanceof Error) {
+        alert(`Error: ${error.message}`);
+      } else {
+        alert("Could not start the demo call. Please check the console for details.");
+      }
+    } finally {
       setLoading(false);
     }
   };
@@ -84,7 +107,7 @@ const handleSubmit = async (e: React.FormEvent) => {
             </p>
             <div className="mt-10 pt-10 border-t border-white/5">
               <p className="text-sm text-gray-500">
-                While you wait, check your email for our Luxury Automotive AI Implementation Guide.
+                If you don't hear anything, check your browser's audio permissions and make sure your volume is up.
               </p>
             </div>
           </div>
@@ -100,15 +123,15 @@ const handleSubmit = async (e: React.FormEvent) => {
           <div className="lg:w-1/2">
             <h2 className="text-4xl md:text-6xl font-bold mb-8">
               Experience Alex Live — <br />
-              <span className="gold-gradient italic">In 15 Minutes</span>
+              <span className="gold-gradient italic">Right Now</span>
             </h2>
             <p className="text-xl text-gray-400 mb-10 leading-relaxed">
-              Enter your details below. Our AI agent, Alex, will initiate a live demonstration call to your number within 15 minutes.
+              Enter your details below. Our AI agent, Alex, will start talking to you immediately through your browser.
             </p>
             
             <ul className="space-y-6">
               {[
-                "Instant live voice demo",
+                "Instant live voice demo in browser",
                 "Full CRM integration walkthrough",
                 "Custom ROI report for your dealership",
                 "Scalability roadmap"
@@ -226,14 +249,14 @@ const handleSubmit = async (e: React.FormEvent) => {
                     <div className="w-6 h-6 border-2 border-black/30 border-t-black rounded-full animate-spin"></div>
                   ) : (
                     <>
-                      Call Me Now
+                      Start Demo Now
                       <PhoneCall className="ml-2 group-hover:shake transition-all" size={20} />
                     </>
                   )}
                 </button>
                 
                 <p className="text-center text-xs text-gray-500">
-                  Alex will call you shortly after submission.
+                  Alex will start talking immediately in your browser.
                 </p>
               </form>
             </div>
