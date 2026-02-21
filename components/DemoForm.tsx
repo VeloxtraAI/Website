@@ -16,65 +16,57 @@ const DemoForm: React.FC = () => {
   });
 
   const handleSubmit = async (e: React.FormEvent) => {
-  e.preventDefault();
-  setLoading(true);
-  
-  try {
-    console.log('Step 1: Requesting web call from n8n...');
+    e.preventDefault();
+    setLoading(true);
     
-    // 1. Send data to n8n and GET the access token back
-    const response = await fetch('https://n8n.veloxtra-ai.com/webhook/veloxtra-demo', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        first_name: formData.firstName,
-        last_name: formData.lastName,
-        company_name: formData.companyName,
-        phone_number: formData.phone,
-        email: formData.email,
-        monthly_revenue: formData.revenue
-      })
-    });
+    try {
+      console.log('Step 1: Requesting web call from n8n...');
+      
+      // 1. Send data to n8n and GET the access token back
+      const response = await fetch('https://n8n.veloxtra-ai.com/webhook/veloxtra-demo', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          first_name: formData.firstName,
+          last_name: formData.lastName,
+          company_name: formData.companyName,
+          phone_number: formData.phone,
+          email: formData.email,
+          monthly_revenue: formData.revenue
+        })
+      });
 
-    const data = await response.json();
-    console.log('Received access token from n8n:', data);
+      const data = await response.json();
+      console.log('Received access token from n8n:', data);
 
-    if (!data.access_token) {
-      throw new Error('No access token received from server');
-    }
-
-    console.log('Step 2: Starting web call with access token...');
-    
-    // 2. Initialize Retell Web Call
-    const retellWeb = new RetellWebClient();
-
-    // 3. Start call with the access token
-    await retellWeb.startCall({
-      accessToken: data.access_token,
-      sampleRate: 24000,
-      enableUpdate: true,
-      // Pass dynamic variables here
-      metadata: {
-        first_name: formData.firstName,
-        last_name: formData.lastName,
-        company_name: formData.companyName,
-        email: formData.email,
-        monthly_revenue: formData.revenue
+      if (!data.access_token) {
+        throw new Error('No access token received from server');
       }
-    });
 
-    console.log('Step 3: Call started successfully!');
-    setSubmitted(true);
+      console.log('Step 2: Starting web call with access token...');
+      
+      // 2. Initialize Retell Web Call
+      const retellWeb = new RetellWebClient();
 
-  } catch (error) {
-    console.error('Error:', error);
-    alert(`Error: ${error instanceof Error ? error.message : 'Could not start call'}`);
-  } finally {
-    setLoading(false);
-  }
-};
+      // 3. Start call with the access token
+      await retellWeb.startCall({
+        accessToken: data.access_token,
+        sampleRate: 24000,
+        enableUpdate: true
+      });
+
+      console.log('Step 3: Call started successfully!');
+      setSubmitted(true);
+
+    } catch (error) {
+      console.error('Error:', error);
+      alert(`Error: ${error instanceof Error ? error.message : 'Could not start call'}`);
+    } finally {
+      setLoading(false);
+    }
+  };
 
   if (submitted) {
     return (
@@ -86,7 +78,7 @@ const DemoForm: React.FC = () => {
             </div>
             <h2 className="text-4xl font-bold mb-6">Perfect!</h2>
             <p className="text-xl text-gray-300 leading-relaxed">
-              <span className="text-yellow-500 font-bold">Alex is now talking to you!</span> You should hear him through your browser. Experience how he handles luxury car inquiries live.
+              <span className="text-yellow-500 font-bold">Alex is now talking to you!</span> You should hear him through your browser. Experience how he handles car dealership inquiries live.
             </p>
             <div className="mt-10 pt-10 border-t border-white/5">
               <p className="text-sm text-gray-500">
@@ -165,7 +157,7 @@ const DemoForm: React.FC = () => {
                     required
                     type="text" 
                     className="w-full bg-white/5 border border-white/10 rounded-xl px-4 py-3 text-white focus:outline-none focus:border-yellow-600/50 transition-colors"
-                    placeholder="EuroLuxury Motors"
+                    placeholder="AutoDealers Inc"
                     value={formData.companyName}
                     onChange={e => setFormData({...formData, companyName: e.target.value})}
                   />
@@ -223,24 +215,36 @@ const DemoForm: React.FC = () => {
                   </label>
                 </div>
 
-                <button 
-                  disabled={loading}
-                  type="submit"
-                  className="w-full gold-button py-4 rounded-xl text-black font-bold text-lg flex items-center justify-center transition-all disabled:opacity-50 disabled:cursor-not-allowed group"
-                >
-                  {loading ? (
-                    <div className="w-6 h-6 border-2 border-black/30 border-t-black rounded-full animate-spin"></div>
-                  ) : (
-                    <>
-                      Start Demo Now
-                      <PhoneCall className="ml-2 group-hover:shake transition-all" size={20} />
-                    </>
-                  )}
-                </button>
-                
-                <p className="text-center text-xs text-gray-500">
-                  Alex will start talking immediately in your browser.
-                </p>
+                <div className="space-y-3">
+                  <button 
+                    disabled={loading}
+                    type="submit"
+                    className="w-full gold-button py-4 rounded-xl text-black font-bold text-lg flex items-center justify-center transition-all disabled:opacity-50 disabled:cursor-not-allowed group"
+                  >
+                    {loading ? (
+                      <div className="w-6 h-6 border-2 border-black/30 border-t-black rounded-full animate-spin"></div>
+                    ) : (
+                      <>
+                        Start Demo Now
+                        <PhoneCall className="ml-2 group-hover:shake transition-all" size={20} />
+                      </>
+                    )}
+                  </button>
+
+                  <button
+                    type="button"
+                    data-cal-link="veloxtra-ai/veloxtra-discovery-call"
+                    data-cal-namespace="veloxtra-discovery-call"
+                    data-cal-config='{"layout":"month_view","useSlotsViewOnSmallScreen":"true"}'
+                    className="w-full py-4 rounded-xl border-2 border-yellow-600/50 text-yellow-500 font-bold text-lg transition-all hover:bg-yellow-600/10 hover:border-yellow-600"
+                  >
+                    or Book a Discovery Call
+                  </button>
+
+                  <p className="text-center text-xs text-gray-500">
+                    Try Alex instantly or schedule a detailed consultation
+                  </p>
+                </div>
               </form>
             </div>
           </div>
