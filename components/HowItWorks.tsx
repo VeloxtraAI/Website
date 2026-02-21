@@ -1,22 +1,21 @@
-
 import React from 'react';
 
 const HowItWorks: React.FC = () => {
   const steps = [
     {
       number: "01",
-      title: "Prospect Calls",
-      description: "A high-intent buyer calls your dealership after hours or when your floor is busy."
+      title: "Customer Calls",
+      description: "A customer calls your dealership for Sales, Service, or Parts—after hours or when your team is busy."
     },
     {
       number: "02",
       title: "Alex Engages",
-      description: "Alex answers instantly, qualifies their trade-in and budget, and books the appointment."
+      description: "Alex answers instantly, qualifies their needs (whether Sales, Service, or Parts), and books the appropriate appointment."
     },
     {
       number: "03",
       title: "You Close",
-      description: "Your team receives a qualified appointment notification and focuses on closing the deal."
+      description: "Your team receives a qualified appointment notification and focuses on delivering exceptional service."
     }
   ];
 
