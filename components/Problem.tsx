@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { Clock, Users, BarChart3 } from 'lucide-react';
 
@@ -7,17 +6,17 @@ const Problem: React.FC = () => {
     {
       icon: <Clock className="text-yellow-500" size={32} />,
       title: "After-Hours Silence",
-      description: "Wealthy prospects research luxury cars at night. If you don't answer, they call your competitor next."
+      description: "Buyers research cars at all hours. If you don't answer, they call your competitor next—whether it's for Sales, Service, or Parts."
     },
     {
       icon: <Users className="text-yellow-500" size={32} />,
       title: "Overwhelmed Staff",
-      description: "During peak hours, your best closers are answering basic routing calls instead of selling cars."
+      description: "During peak hours, your best team members are answering basic routing calls instead of serving customers on the floor."
     },
     {
       icon: <BarChart3 className="text-yellow-500" size={32} />,
-      title: "Inconsistent Leads",
-      description: "Manual lead qualification varies by staff member. Sofia ensures every lead is qualified perfectly, every time."
+      title: "Inconsistent Experience",
+      description: "Manual call handling varies by staff member. Alex ensures every caller gets the same professional experience, every time."
     }
   ];
 
@@ -29,10 +28,10 @@ const Problem: React.FC = () => {
         <div className="text-center mb-16">
           <h2 className="text-3xl md:text-5xl font-bold mb-6">
             Every Missed Call is a <br />
-            <span className="text-red-500/80 italic">Lost $80,000 Sale</span>
+            <span className="text-red-500/80 italic">Lost Opportunity</span>
           </h2>
           <p className="text-gray-400 max-w-2xl mx-auto">
-            In the luxury market, the first impression is everything. Yet, high-end dealerships continue to lose millions due to simple operational friction.
+            In automotive sales, the first impression is everything. Yet, dealerships continue to lose revenue due to missed calls across Sales, Service, and Parts departments.
           </p>
         </div>
 
