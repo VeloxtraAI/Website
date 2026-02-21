@@ -215,7 +215,7 @@ const DemoForm: React.FC = () => {
                   </label>
                 </div>
 
-                <div className="space-y-3">
+                <div className="space-y-4">
                   <button 
                     disabled={loading}
                     type="submit"
@@ -225,12 +225,21 @@ const DemoForm: React.FC = () => {
                       <div className="w-6 h-6 border-2 border-black/30 border-t-black rounded-full animate-spin"></div>
                     ) : (
                       <>
-                        Start Demo Now
+                        Start a Live Demo Now
                         <PhoneCall className="ml-2 group-hover:shake transition-all" size={20} />
                       </>
                     )}
                   </button>
-
+                
+                  <div className="relative">
+                    <div className="absolute inset-0 flex items-center">
+                      <div className="w-full border-t border-white/10"></div>
+                    </div>
+                    <div className="relative flex justify-center text-sm">
+                      <span className="px-4 bg-[#05070a] text-gray-500">or</span>
+                    </div>
+                  </div>
+                
                   <button
                     type="button"
                     data-cal-link="veloxtra-ai/veloxtra-discovery-call"
@@ -238,9 +247,9 @@ const DemoForm: React.FC = () => {
                     data-cal-config='{"layout":"month_view","useSlotsViewOnSmallScreen":"true"}'
                     className="w-full py-4 rounded-xl border-2 border-yellow-600/50 text-yellow-500 font-bold text-lg transition-all hover:bg-yellow-600/10 hover:border-yellow-600"
                   >
-                    or Book a Discovery Call
+                    Book a Discovery Call
                   </button>
-
+                
                   <p className="text-center text-xs text-gray-500">
                     Try Alex instantly or schedule a detailed consultation
                   </p>
