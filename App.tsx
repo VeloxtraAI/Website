@@ -16,6 +16,7 @@ import {
 import Hero from './components/Hero';
 import Problem from './components/Problem';
 import Solution from './components/Solution';
+import Departments from './components/Departments'; 
 import HowItWorks from './components/HowItWorks';
 import DemoForm from './components/DemoForm';
 import Footer from './components/Footer';
@@ -91,6 +92,7 @@ const App: React.FC = () => {
         <Hero onCtaClick={scrollToDemo} />
         <Problem />
         <Solution />
+        <Departments />
         <HowItWorks />
         <DemoForm />
       </main>
