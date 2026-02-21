@@ -1,4 +1,3 @@
-
 import React from 'react';
 import { ArrowRight } from 'lucide-react';
 
@@ -14,7 +13,7 @@ const Hero: React.FC<HeroProps> = ({ onCtaClick }) => {
         <div className="absolute inset-0 bg-gradient-to-r from-[#05070a] via-[#05070a]/80 to-transparent z-10" />
         <img 
           src="https://images.unsplash.com/photo-1503376780353-7e6692767b70?auto=format&fit=crop&q=80&w=2000" 
-          alt="Luxury Car Interior" 
+          alt="Car Dealership" 
           className="w-full h-full object-cover"
         />
       </div>
@@ -31,11 +30,11 @@ const Hero: React.FC<HeroProps> = ({ onCtaClick }) => {
           
           <h1 className="text-5xl md:text-7xl font-bold leading-tight mb-6">
             Never Miss a <br />
-            <span className="gold-gradient">Luxury Lead</span> Again
+            <span className="gold-gradient">Lead</span> Again
           </h1>
           
           <p className="text-xl text-gray-400 mb-10 leading-relaxed max-w-2xl">
-            AI Voice Agents that sound human, work 24/7, and seamlessly convert inbound calls into high-value showroom visits. Alex handles the traffic; your team closes the sales.
+            AI Voice Agents that sound human, work 24/7, and seamlessly convert inbound calls into showroom visits across Sales, Service, and Parts departments. Alex handles the traffic; your team closes the deals.
           </p>
           
           <div className="flex flex-col sm:flex-row items-start sm:items-center space-y-4 sm:space-y-0 sm:space-x-6">
@@ -58,7 +57,7 @@ const Hero: React.FC<HeroProps> = ({ onCtaClick }) => {
                 ))}
               </div>
               <p className="text-sm text-gray-500">
-                Trusted by 50+ Premium Dealers
+                Trusted by 50+ Dealerships
               </p>
             </div>
           </div>
